@@ -78,6 +78,7 @@ const RegisterPage: React.FC<Props> = ({ setIsLogin }) => {
 
         if (data.statusCode === 401) {
           toast.error("status code 401 mila");
+          setShowOtp(true);
           console.log(data.message);
           return;
         }
@@ -175,7 +176,7 @@ const RegisterPage: React.FC<Props> = ({ setIsLogin }) => {
               {/* OTP */}
 
               {showOtp && (
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <input
                     type="text"
                     name="otp"
@@ -189,7 +190,7 @@ const RegisterPage: React.FC<Props> = ({ setIsLogin }) => {
                   <button
                     type="button"
                     onClick={checkOtp}
-                    className="px-4 py-2 rounded-2xl bg-sky-500 hover:bg-sky-400 text-white font-medium transition-all duration-300"
+                    className="w-full sm:w-auto"
                   >
                     Verify
                   </button>
