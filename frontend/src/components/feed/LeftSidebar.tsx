@@ -36,24 +36,21 @@ const LeftSidebar: React.FC<Props> = ({ user }) => {
   return (
     <div
       className="
-        hidden
-        lg:flex
-        flex-col
-        justify-between
-        w-[250px]
-        border-r
-        border-gray-200
-        dark:border-zinc-800
-        px-4
-        py-4
-        sticky
-        top-0
-        h-screen
-        bg-white
-        dark:bg-black
-        transition-all
-        duration-300
-      "
+  flex
+  flex-col
+  justify-between
+  w-[250px]
+  border-r
+  border-gray-200
+  dark:border-zinc-800
+  px-4
+  py-4
+  sticky
+  top-0
+  h-screen
+  bg-white
+  dark:bg-black
+"
     >
       {/* TOP */}
       <div>
