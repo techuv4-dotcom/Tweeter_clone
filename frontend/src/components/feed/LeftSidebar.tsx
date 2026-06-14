@@ -14,13 +14,14 @@ import {
 
 interface Props {
   user: any;
+  mobile?: boolean;
 }
 
-const LeftSidebar: React.FC<Props> = ({ user }) => {
+const LeftSidebar: React.FC<Props> = ({ user, mobile = false }) => {
   const location = useLocation();
 
   const navItems = [
-    { icon: Home, label: "Home", path: "/" },
+    { icon: Home, label: "Home", path: "/home" },
     { icon: Search, label: "Explore", path: "/explore" },
     { icon: Bell, label: "Notifications", path: "/notifications" },
     { icon: MessageCircle, label: "Messages", path: "/messages" },
@@ -35,22 +36,20 @@ const LeftSidebar: React.FC<Props> = ({ user }) => {
 
   return (
     <div
-      className="
-  flex
-  flex-col
-  justify-between
-  w-[250px]
-  border-r
-  border-gray-200
-  dark:border-zinc-800
-  px-4
-  py-4
-  sticky
-  top-0
-  h-screen
-  bg-white
-  dark:bg-black
-"
+      className={`
+    ${mobile ? "flex" : "hidden lg:flex"}
+    flex-col
+    justify-between
+    w-[250px]
+    border-r
+    border-gray-200
+    dark:border-zinc-800
+    px-4
+    py-4
+    ${mobile ? "h-full" : "sticky top-0 h-dvh"}
+    bg-white
+    dark:bg-black
+  `}
     >
       {/* TOP */}
       <div>
