@@ -112,7 +112,7 @@ const LeftSidebar: React.FC<Props> = ({ user, mobile = false }) => {
       </div>
 
       {/* BOTTOM */}
-      <div className="space-y-3">
+      <div className="mt-auto space-y-3 pt-4">
         {/* PROFILE */}
         <div
           className="

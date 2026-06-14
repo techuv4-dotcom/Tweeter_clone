@@ -62,11 +62,9 @@ const FeedPage = () => {
 
           <div className="w-6" />
         </div>
-      </div>
-      {/* Theme Toggle Button */}
-      <button
-        onClick={() => setDarkMode(!darkMode)}
-        className="
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="
         fixed
         top-5
         right-5
@@ -81,9 +79,11 @@ const FeedPage = () => {
         transition-all
         duration-300
       "
-      >
-        {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-      </button>
+        >
+          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+      </div>
+      {/* Theme Toggle Button */}
 
       <div className="max-w-7xl mx-auto flex w-full">
         <LeftSidebar user={user_n} />
