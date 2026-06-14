@@ -12,21 +12,58 @@ const FeedSection: React.FC<Props> = ({ user }) => {
   const [posts, setPosts] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const fetchPosts = async () => {
-    const response = await axiosInstance.get(`/tweets?page=${page}&limit=5`);
+    try {
+      const response = await axiosInstance.get(`/tweets?page=${page}&limit=5`);
 
-    const newPosts = response.data;
+      const newPosts = response.data;
 
-    setPosts((prev) => [...prev, ...newPosts]);
+      setPosts((prev) => [...prev, ...newPosts]);
 
-    if (newPosts.length < 5) {
-      setHasMore(false);
+      if (newPosts.length < 5) {
+        setHasMore(false);
+      }
+
+      setPage((prev) => prev + 1);
+    } finally {
+      setLoading(false);
     }
-
-    setPage((prev) => prev + 1);
   };
+  if (loading && posts.length === 0) {
+    return (
+      <div className="animate-pulse p-4 space-y-6">
+        {[1, 2, 3, 4].map((item) => (
+          <div
+            key={item}
+            className="border-b border-gray-300 dark:border-zinc-800 pb-5"
+          >
+            <div className="flex gap-4">
+              {/* Avatar */}
+              <div className="w-12 h-12 rounded-full bg-gray-300 dark:bg-zinc-700"></div>
 
+              <div className="flex-1">
+                {/* Name */}
+                <div className="h-4 w-32 bg-gray-300 dark:bg-zinc-700 rounded mb-3"></div>
+
+                {/* Time */}
+                <div className="h-3 w-20 bg-gray-300 dark:bg-zinc-700 rounded mb-4"></div>
+
+                {/* Tweet Content */}
+                <div className="h-3 w-full bg-gray-300 dark:bg-zinc-700 rounded mb-2"></div>
+                <div className="h-3 w-5/6 bg-gray-300 dark:bg-zinc-700 rounded mb-2"></div>
+                <div className="h-3 w-3/4 bg-gray-300 dark:bg-zinc-700 rounded"></div>
+
+                {/* Image Placeholder */}
+                <div className="mt-4 h-48 rounded-xl bg-gray-300 dark:bg-zinc-700"></div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
   const itemTemplate = (post: any) => {
     return (
       <div
