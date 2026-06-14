@@ -1,5 +1,5 @@
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axiosInstance from "../../utils/Axios.instance";
 import CreatePost from "./CreatePost";
@@ -31,6 +31,10 @@ const FeedSection: React.FC<Props> = ({ user }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
   if (loading && posts.length === 0) {
     return (
       <div className="animate-pulse p-4 space-y-6">
