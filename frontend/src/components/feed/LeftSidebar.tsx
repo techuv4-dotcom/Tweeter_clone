@@ -23,9 +23,9 @@ const LeftSidebar: React.FC<Props> = ({ user, mobile = false }) => {
   const navItems = [
     { icon: Home, label: "Home", path: "/home" },
     { icon: Search, label: "Explore", path: "/explore" },
-    { icon: Bell, label: "Notifications", path: "/notifications" },
-    { icon: MessageCircle, label: "Messages", path: "/messages" },
-    { icon: Bookmark, label: "Bookmarks", path: "/bookmarks" },
+    // { icon: Bell, label: "Notifications", path: "/notifications" },
+    // { icon: MessageCircle, label: "Messages", path: "/messages" },
+    // { icon: Bookmark, label: "Bookmarks", path: "/bookmarks" },
     { icon: User, label: "Profile", path: `/profile/${user?.id}` },
   ];
   const navigate = useNavigate();
