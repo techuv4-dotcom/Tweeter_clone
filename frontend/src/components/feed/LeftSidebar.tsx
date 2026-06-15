@@ -1,16 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
-import {
-  Home,
-  Bell,
-  MessageCircle,
-  Bookmark,
-  User,
-  Search,
-  MoreHorizontal,
-  LogOut,
-} from "lucide-react";
+import { Home, User, Search, MoreHorizontal, LogOut } from "lucide-react";
 
 interface Props {
   user: any;
