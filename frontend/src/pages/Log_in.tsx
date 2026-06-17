@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/Axios.instance";
 import { useNavigate } from "react-router-dom";
+import LoadingScreen from "../utils/Loading";
 
 interface Props {
   setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,6 +19,7 @@ const LogInPage: React.FC<Props> = ({ setIsLogin }) => {
   const navigate = useNavigate();
   const [showResendOtp, setshowResendOtp] = useState<boolean>(false);
   const [otp, setOtp] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
   const initialValues: UserLogin = {
     email: "",
@@ -60,6 +62,12 @@ const LogInPage: React.FC<Props> = ({ setIsLogin }) => {
         password: values.password,
       };
 
+      if (loading) {
+        return <LoadingScreen />;
+      }
+
+      setLoading(true);
+
       try {
         const response = await axiosInstance.post("/users/login", userData);
 
@@ -84,6 +92,8 @@ const LogInPage: React.FC<Props> = ({ setIsLogin }) => {
         }
       } catch (error: any) {
         toast.error(error.response?.data?.message || "Something went wrong");
+      } finally {
+        setLoading(false);
       }
     },
   });

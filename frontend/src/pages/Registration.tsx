@@ -52,6 +52,7 @@ const RegisterPage: React.FC<Props> = ({ setIsLogin }) => {
     });
     if (response.data === true) {
       toast.success("Verification successfull");
+      setLoading(false);
       setIsLogin(true);
       return true;
     }
@@ -108,8 +109,6 @@ const RegisterPage: React.FC<Props> = ({ setIsLogin }) => {
       } catch (error) {
         console.log(error);
         toast.error("Something went wrong");
-      } finally {
-        setLoading(false);
       }
     },
   });
