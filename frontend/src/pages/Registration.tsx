@@ -26,6 +26,7 @@ const RegisterPage: React.FC<Props> = ({ setIsLogin }) => {
   const [showOtp, setShowOtp] = useState<boolean>(false);
   const [otp, setOtp] = useState<string>("");
   const [user_id, setUserId] = useState<number>();
+  const [loading, setLoading] = useState(false);
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
@@ -69,9 +70,16 @@ const RegisterPage: React.FC<Props> = ({ setIsLogin }) => {
         password: values.password,
       };
 
+      if (loading) {
+        return;
+      }
+
+      setLoading(true);
+
       /*  user creation */
 
       try {
+        toast.success("Check your MailBox or SPAM folder");
         const response = await axiosInstance.post("/users", userData);
         console.log(response);
         const data = response.data;
@@ -100,6 +108,8 @@ const RegisterPage: React.FC<Props> = ({ setIsLogin }) => {
       } catch (error) {
         console.log(error);
         toast.error("Something went wrong");
+      } finally {
+        setLoading(false);
       }
     },
   });
