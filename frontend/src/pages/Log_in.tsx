@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/Axios.instance";
 import { useNavigate } from "react-router-dom";
-import LoadingScreen from "../utils/Loading";
 
 interface Props {
   setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
@@ -63,7 +62,7 @@ const LogInPage: React.FC<Props> = ({ setIsLogin }) => {
       };
 
       if (loading) {
-        return <LoadingScreen />;
+        return;
       }
 
       setLoading(true);
@@ -97,6 +96,18 @@ const LogInPage: React.FC<Props> = ({ setIsLogin }) => {
       }
     },
   });
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-zinc-700 border-t-sky-500 rounded-full animate-spin"></div>
+
+          <p className="text-zinc-400 text-lg">Signing in...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-black via-[#0f172a] to-black text-white relative overflow-hidden">
